@@ -6,6 +6,7 @@ public class Bankomatik {
 
     public static void main(String[] args) {
 
+        // ATM Simulator
         // check the presence of the data file and if it is not there, create it
         String fileName = "test.json";
         File file = new File(fileName);
@@ -34,12 +35,12 @@ public class Bankomatik {
             String name_new = scanner.nextLine();
 
             // select data from the array by username
-            for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).getName().equals(name_new)) {
-                    user_name = users.get(i).getName();
-                    user_pass = users.get(i).getPass();
-                    user_balance = users.get(i).getBalance();
-                    user_account = users.get(i).getAccount();
+            for (Person user : users) {
+                if (user.getName().equals(name_new)) {
+                    user_name = user.getName();
+                    user_pass = user.getPass();
+                    user_balance = user.getBalance();
+                    user_account = user.getAccount();
                 }
             }
             if (name_new.equals(user_name)) {
@@ -83,12 +84,12 @@ public class Bankomatik {
                             int transfer = scanner.nextInt();
 
                             // select from the data array by user account
-                            for (int j = 0; j < users.size(); j++) {
-                                if (users.get(j).getAccount() == (transfer)) {
-                                    transfer_name = users.get(j).getName();
-                                    transfer_pass = users.get(j).getPass();
-                                    transfer_balance = users.get(j).getBalance();
-                                    transfer_account = users.get(j).getAccount();
+                            for (Person user : users) {
+                                if (user.getAccount() == (transfer)) {
+                                    transfer_name = user.getName();
+                                    transfer_pass = user.getPass();
+                                    transfer_balance = user.getBalance();
+                                    transfer_account = user.getAccount();
                                 }
                             }
                             if (transfer == (transfer_account)) {
@@ -172,6 +173,7 @@ public class Bankomatik {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static void readData(String fileName) {
 
         // reading data from a JSON file
